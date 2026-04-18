@@ -59,7 +59,6 @@ window.onload = function() {
   if (saved) {
     offreChoisie = JSON.parse(saved);
 
-    document.getElementById("selection").textContent =
-      `Offre sélectionnée : ${offreChoisie.nom} - ${offreChoisie.prix}€`;
-  }
+    element.parentElement.querySelector(".selection").textContent =
+  `Offre sélectionnée : ${nom} - ${prix}€`;
 };
