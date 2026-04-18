@@ -224,3 +224,19 @@ footer {
     margin: 10px 0;
   }
 }
+
+.panier {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+}
+
+#panier-items p {
+  margin: 10px 0;
+}
+
+#panier-items button {
+  margin-left: 10px;
+  background: red;
+}
