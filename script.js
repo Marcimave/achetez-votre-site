@@ -38,8 +38,8 @@ function choisirOffre(nom, prix, element) {
   // sauvegarde
   localStorage.setItem("offre", JSON.stringify(offreChoisie));
 
-  document.getElementById("selection").textContent =
-    `Offre sélectionnée : ${nom} - ${prix}€`;
+  element.parentElement.querySelector(".selection").textContent =
+  `Offre sélectionnée : ${nom} - ${prix}€`;
 }
 
 // COMMANDER
@@ -59,6 +59,8 @@ window.onload = function() {
   if (saved) {
     offreChoisie = JSON.parse(saved);
 
-    element.parentElement.querySelector(".selection").textContent =
-  `Offre sélectionnée : ${nom} - ${prix}€`;
-};
+    const zones = document.querySelectorAll(".selection");
+zones.forEach(zone => {
+  zone.textContent = `Offre sélectionnée : ${offreChoisie.nom} - ${offreChoisie.prix}€`;
+});
+}
