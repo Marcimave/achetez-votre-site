@@ -116,3 +116,16 @@ function payer() {
 
   viderPanier();
 }
+
+function payer() {
+  if (panier.length === 0) {
+    alert("Votre panier est vide");
+    return;
+  }
+
+  const total = panier.reduce((sum, item) => sum + item.prix * item.quantite, 0);
+
+  alert("Paiement simulé de " + total + "€");
+
+  viderPanier();
+}
