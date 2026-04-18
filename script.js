@@ -5,9 +5,9 @@ const nomInput = document.getElementById("nom");
 const emailInput = document.getElementById("email");
 const messageInput = document.getElementById("message");
 
-let offreChoisie = null;
-
+// =====================
 // FORMULAIRE
+// =====================
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -27,10 +27,11 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
-// CHOIX OFFRE
+// =====================
+// PANIER PRO
+// =====================
 let panier = [];
 
-// AJOUT AU PANIER
 function choisirOffre(nom, prix) {
   const existant = panier.find(item => item.nom === nom);
 
@@ -44,7 +45,6 @@ function choisirOffre(nom, prix) {
   afficherPanier();
 }
 
-// AFFICHAGE PANIER
 function afficherPanier() {
   const container = document.getElementById("panier-items");
   const totalElement = document.getElementById("total");
@@ -66,27 +66,26 @@ function afficherPanier() {
   totalElement.textContent = "Total : " + total + "€";
 }
 
-// SUPPRIMER PRODUIT
 function supprimerProduit(index) {
   panier.splice(index, 1);
   sauvegarderPanier();
   afficherPanier();
 }
 
-// VIDER PANIER
 function viderPanier() {
   panier = [];
   sauvegarderPanier();
   afficherPanier();
 }
 
-// SAUVEGARDE
 function sauvegarderPanier() {
   localStorage.setItem("panier", JSON.stringify(panier));
 }
 
-// CHARGEMENT PAGE
-window.onload = function () {
+// =====================
+// CHARGEMENT
+// =====================
+window.onload = () => {
   const saved = localStorage.getItem("panier");
 
   if (saved) {
@@ -94,37 +93,3 @@ window.onload = function () {
     afficherPanier();
   }
 };
-
-  // effet visuel
-  document.querySelectorAll(".carte").forEach(c => c.classList.remove("active"));
-  element.parentElement.classList.add("active");
-
-  // sauvegarde
-  localStorage.setItem("offre", JSON.stringify(offreChoisie));
-
-  element.parentElement.querySelector(".selection").textContent =
-  `Offre sélectionnée : ${nom} - ${prix}€`;
-}
-
-// COMMANDER
-function commander() {
-  if (!offreChoisie) {
-    alert("Veuillez choisir une offre !");
-    return;
-  }
-
-  alert(`Commande confirmée : ${offreChoisie.nom} - ${offreChoisie.prix}€`);
-}
-
-// CHARGEMENT PAGE
-window.onload = function() {
-  const saved = localStorage.getItem("offre");
-
-  if (saved) {
-    offreChoisie = JSON.parse(saved);
-
-    const zones = document.querySelectorAll(".selection");
-zones.forEach(zone => {
-  zone.textContent = `Offre sélectionnée : ${offreChoisie.nom} - ${offreChoisie.prix}€`;
-});
-}
